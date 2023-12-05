@@ -17,8 +17,8 @@ if [[ -z $GIT_REPO_URL ]]; then
     exit 1
 fi
 
+# replace SSH url with HTTPS url and include the token
 GIT_REPO_URL=${GIT_REPO_URL/https:\/\//https:\/\/$GIT_TOKEN@}
-echo "-----> GIT_REPO_URL: $GIT_REPO_URL"
 
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
