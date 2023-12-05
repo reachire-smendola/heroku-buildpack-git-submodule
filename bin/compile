@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -exv
 
 APP_DIR="$1"
 ENV_DIR="$3"
@@ -17,7 +17,7 @@ if [[ -z $GIT_REPO_URL ]]; then
     exit 1
 fi
 
-# replace SSH url with HTTPS url and include the token
+# Insert the token in the repo url
 GIT_REPO_URL=${GIT_REPO_URL/https:\/\//https:\/\/$GIT_TOKEN@}
 
 # make sure we're in the root of the app dir
