@@ -1,4 +1,4 @@
-#!/bin/bash -exv
+#!/bin/bash -e
 
 APP_DIR="$1"
 ENV_DIR="$3"
@@ -21,7 +21,9 @@ fi
 if [[ $GIT_REPO_URL == https:* ]]; then
   GIT_REPO_URL=${GIT_REPO_URL/https:\/\//https:\/\/$GIT_TOKEN@}
 else
+  # TODO: support git urls as well
   echo "Unsupported protocol in GIT_REPO_URL; only HTTPS is supported"
+  exit 1
 fi
 
 # make sure we're in the root of the app dir
