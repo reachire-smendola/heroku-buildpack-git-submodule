@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 APP_DIR="$1"
 ENV_DIR="$3"
@@ -35,10 +35,8 @@ rm -f .gitmodules
 # add the repo as a remote and fetch the repo's history
 git remote add origin "$GIT_REPO_URL"
 
-git status
-
 # checkout the revision that's being deployed
-echo "-----> Fetching shallow history from $GIT_REPO_URL"
+echo "-----> Fetching shallow history"
 git fetch -q --depth 1 origin -a > /dev/null
 git checkout -q ${SOURCE_VERSION:-master} > /dev/null
 
