@@ -31,6 +31,8 @@ echo ".gitmodules" > .git/info/sparse-checkout
 # add the repo as a remote and fetch the repo's history
 git remote add origin "$GIT_REPO_URL"
 
+git status
+
 # checkout the revision that's being deployed
 echo "-----> Fetching shallow history from $GIT_REPO_URL"
 git fetch -q --depth 1 origin -a > /dev/null
