@@ -5,9 +5,15 @@ ENV_DIR="$3"
 
 # load required environment variables
 GIT_TOKEN=$(<"$ENV_DIR/GIT_TOKEN")
+GIT_REPO_URL=$(<"$ENV_DIR/GIT_REPO_URL")
 
 if [[ -z $GIT_TOKEN ]]; then
     echo "Did you forget to set GIT_TOKEN?"
+    exit 1
+fi
+
+if [[ -z $GIT_REPO_URL ]]; then
+    echo "Did you forget to set GIT_REPO_URL?"
     exit 1
 fi
 
