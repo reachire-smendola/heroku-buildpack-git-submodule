@@ -27,6 +27,7 @@ git init -q
 # all the files in the repo, we'll only check out .gitmodules
 git config core.sparseCheckout true
 echo ".gitmodules" > .git/info/sparse-checkout
+rm -f .gitmodules
 
 # add the repo as a remote and fetch the repo's history
 git remote add origin "$GIT_REPO_URL"
