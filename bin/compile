@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 APP_DIR="$1"
 ENV_DIR="$3"
