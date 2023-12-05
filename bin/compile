@@ -31,10 +31,6 @@ echo ".gitmodules" > .git/info/sparse-checkout
 # add the repo as a remote and fetch the repo's history
 git remote add origin "$GIT_REPO_URL"
 
-# replace SSH urls with HTTPS urls and include the token
-echo "-----> Redirecting submodules to HTTPS"
-sed -i -e "s/git@github.com:/https:\/\/$GIT_TOKEN@github.com\//" ./.gitmodules
-
 # checkout the revision that's being deployed
 echo "-----> Fetching shallow history from $GIT_REPO_URL"
 git fetch -q --depth 1 origin -a > /dev/null
@@ -44,7 +40,11 @@ git checkout -q ${SOURCE_VERSION:-master} > /dev/null
 git config core.sparseCheckout false
 rm .git/info/sparse-checkout
 
-# initialize all the submodules
+# replace SSH urls with HTTPS urls and include the token
+echo "-----> Redirecting submodules to HTTPS"
+sed -i -e "s/git@github.com:/https:\/\/$GIT_TOKEN@github.com\//" ./.gitmodules
+
+# Fetch all the submodules
 echo "-----> Checking out all submodules"
 git submodule -q update --init --recursive
 git submodule status | sed 's/^/       * /'
