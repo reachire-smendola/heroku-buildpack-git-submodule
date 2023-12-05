@@ -18,7 +18,11 @@ if [[ -z $GIT_REPO_URL ]]; then
 fi
 
 # Insert the token in the repo url
-GIT_REPO_URL=${GIT_REPO_URL/https:\/\//https:\/\/$GIT_TOKEN@}
+if [[ $GIT_REPO_URL == https:* ]]; then
+  GIT_REPO_URL=${GIT_REPO_URL/https:\/\//https:\/\/$GIT_TOKEN@}
+else
+  echo "Unsupported protocol in GIT_REPO_URL; only HTTPS is supported"
+fi
 
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
